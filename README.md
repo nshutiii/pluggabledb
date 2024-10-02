@@ -7,8 +7,22 @@ To create a pluggable database
 -- Create a Pluggable Database (PDB)
 CREATE PLUGGABLE DATABASE plsql_class2024db
 ADMIN USER ke_plsqlauca IDENTIFIED BY MyPassword
-ROLES = (DBA)
 DEFAULT TABLESPACE users
-FILE_NAME_CONVERT = (C:\app\HP\product\21c\oradata\XE\XEPDB1', '/opt/oracle/oradata/my_pdb/');
+FILE_NAME_CONVERT = (C:\app\HP\product\21c\oradata\XE\XEPDB1', 'C:\app\HP\product\21c\oradata\XE\XEPDB1\plsql_class2024db');
+
+```
+
+2. Deleting a Pluggable Database (PDB)
+Before deleting a pluggable database, it must be closed and in MOUNT mode.
+
+```sql
+-- Close the PDB before dropping it
+ALTER PLUGGABLE DATABASE my_pdb CLOSE IMMEDIATE;
+
+-- Open the PDB in MOUNT mode
+ALTER PLUGGABLE DATABASE my_pdb OPEN MOUNT;
+
+-- Drop the Pluggable Database
+DROP PLUGGABLE DATABASE my_pdb INCLUDING DATAFILES;
 
 ```
